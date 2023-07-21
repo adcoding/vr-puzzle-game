@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://crkrrry24h5y6"]
+
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_yprps"]
+[ext_resource type="ArrayMesh" uid="uid://dmbpecs72hv0o" path="res://Assets/Books/Book1.res" id="2_sibar"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="3_hdn03"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n65cb"]
+rough = true
+absorbent = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hl8gc"]
+points = PackedVector3Array(0.0853769, 0.0325989, 0.120093, -0.0870489, 0.0325989, 0.120093, 0.0853769, -0.0325989, 0.120093, 0.0853769, 0.0325989, -0.120093, -0.0939459, 0.0302567, 0.120093, -0.0870489, 0.0325989, -0.120093, -0.0870489, -0.0325989, 0.120093, 0.0853769, -0.0325989, -0.120093, -0.095031, 0.0279592, 0.120093, -0.0939459, 0.0302567, -0.120093, -0.0939459, -0.0302631, 0.120093, -0.0870489, -0.0325989, -0.120093, -0.0989302, 0.0186352, 0.120093, -0.095031, 0.0279592, -0.120093, -0.095031, -0.0279656, 0.120093, -0.0939459, -0.0302631, -0.120093, -0.101579, 0.00931762, 0.120093, -0.0989302, 0.0186352, -0.120093, -0.0989302, -0.0186416, 0.120093, -0.095031, -0.0279656, -0.120093, -0.102517, 0, 0.120093, -0.101579, 0.00931762, -0.120093, -0.101579, -0.009324, 0.120093, -0.0989302, -0.0186416, -0.120093, -0.102517, 0, -0.120093, -0.101579, -0.009324, -0.120093)
+
+[node name="BookOne" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 5
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_n65cb")
+freeze_mode = 1
+script = ExtResource("1_yprps")
+
+[node name="BookOneMesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_sibar")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_hl8gc")
+
+[node name="GrabPointHandLeft" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.110008, 0.0516761, 0)
+visible = false
+script = ExtResource("3_hdn03")
+
+[node name="GrabPointHandRight" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0833433, 0.0421128, 0)
+visible = false
+script = ExtResource("3_hdn03")
+hand = 1

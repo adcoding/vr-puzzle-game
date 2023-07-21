@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://0cx1ssx4na0k"
+path="res://.godot/imported/PineTree1Snowy.obj-df4cd50b89f18303da101203cc24c224.mesh"
+
+[deps]
+
+files=["res://.godot/imported/PineTree1Snowy.obj-df4cd50b89f18303da101203cc24c224.mesh"]
+
+source_file="res://Assets/Models/Trees/OBJ/PineTree1Snowy.obj"
+dest_files=["res://.godot/imported/PineTree1Snowy.obj-df4cd50b89f18303da101203cc24c224.mesh", "res://.godot/imported/PineTree1Snowy.obj-df4cd50b89f18303da101203cc24c224.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

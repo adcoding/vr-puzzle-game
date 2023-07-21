@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://iicy6d74onlg"]
+
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_7h7ll"]
+[ext_resource type="ArrayMesh" uid="uid://ch0mdl7rxxfko" path="res://Assets/Books/Book3.res" id="2_lvfh4"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="3_037gq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j6sur"]
+rough = true
+absorbent = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5gq7i"]
+points = PackedVector3Array(-0.102394, -5.11482e-06, -0.085485, -0.102394, -5.11482e-06, 0.0854683, -0.101526, 0.00629668, -0.085485, -0.101526, -0.00630179, -0.085485, -0.101526, -0.00630179, 0.0854683, -0.101526, 0.00629668, 0.0854683, -0.0991942, 0.0125985, -0.085485, -0.0991942, -0.0126036, -0.085485, -0.0991942, -0.0126036, 0.0854683, -0.0991942, 0.0125985, 0.0854683, -0.0958496, 0.0188951, -0.085485, -0.0958496, -0.0189003, -0.085485, -0.0958496, -0.0189003, 0.0854683, -0.0958496, 0.0188951, 0.0854683, -0.0944937, 0.021243, -0.085485, -0.0944937, -0.0212481, -0.085485, -0.0944937, -0.0212481, 0.0854683, -0.0944937, 0.021243, 0.0854683, -0.0864667, 0.0261279, -0.085485, -0.0864667, -0.0261279, -0.085485, -0.0864667, -0.0261279, 0.0854683, -0.0864667, 0.0261279, 0.0854683, 0.0822816, 0.0261279, -0.085485, 0.0822816, -0.0261279, -0.085485, 0.0822816, -0.0261279, 0.0854683, 0.0822816, 0.0261279, 0.0854683)
+
+[node name="BookThree" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 5
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_j6sur")
+script = ExtResource("1_7h7ll")
+
+[node name="BookThreeMesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_lvfh4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_5gq7i")
+
+[node name="GrabPointHandLeft" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0657928, 0, 0)
+visible = false
+script = ExtResource("3_037gq")
+
+[node name="GrabPointHandRight" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0833433, 0.0421128, 0)
+visible = false
+script = ExtResource("3_037gq")
+hand = 1

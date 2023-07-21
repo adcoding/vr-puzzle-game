@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8c52o1qxg1tr"]
+
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_sg5v2"]
+[ext_resource type="ArrayMesh" uid="uid://dmbpecs72hv0o" path="res://Assets/Books/Book1.res" id="2_vem6e"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="3_ic0vd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d8yo0"]
+size = Vector3(0.128, 0.128, 0.128)
+
+[node name="PickableBook1" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_sg5v2")
+
+[node name="Book1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("2_vem6e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_d8yo0")
+
+[node name="GrabPointHandLeft" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0657928, 0, 0)
+visible = false
+script = ExtResource("3_ic0vd")
+
+[node name="GrabPointHandRight" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0566906, 0, 0)
+visible = false
+script = ExtResource("3_ic0vd")
+hand = 1

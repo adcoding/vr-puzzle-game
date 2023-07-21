@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://ubecjykldqj3"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_m2noy"]
+[ext_resource type="PackedScene" uid="uid://bft3xyxs31ci3" path="res://addons/godot-xr-tools/functions/function_pose_detector.tscn" id="2_h7ao8"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="2_iowdh"]
+[ext_resource type="PackedScene" uid="uid://kcqomcjq52np" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_physics_hand.tscn" id="3_15tq5"]
+[ext_resource type="Script" path="res://Scripts/CubeSpawner.gd" id="4_8q5ei"]
+[ext_resource type="PackedScene" uid="uid://cy03d57iyrci" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_physics_hand.tscn" id="6_xlqkp"]
+
+[node name="Pivot" type="Node3D"]
+
+[node name="Player" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2256)
+script = ExtResource("1_m2noy")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="Player"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D"]
+current = true
+
+[node name="right_hand" type="XRController3D" parent="Player/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.648983, 0, 0)
+tracker = &"right_hand"
+
+[node name="RightPhysicsHand" parent="Player/XROrigin3D/right_hand" instance=ExtResource("3_15tq5")]
+
+[node name="FunctionPoseDetector" parent="Player/XROrigin3D/right_hand" instance=ExtResource("2_h7ao8")]
+
+[node name="FunctionPickup" type="Node3D" parent="Player/XROrigin3D/right_hand"]
+script = ExtResource("2_iowdh")
+
+[node name="left_hand" type="XRController3D" parent="Player/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.363738, 0, 0)
+tracker = &"left_hand"
+
+[node name="LeftPhysicsHand" parent="Player/XROrigin3D/left_hand" instance=ExtResource("6_xlqkp")]
+
+[node name="FunctionPoseDetector" parent="Player/XROrigin3D/left_hand" instance=ExtResource("2_h7ao8")]
+
+[node name="FunctionPickup" type="Node3D" parent="Player/XROrigin3D/left_hand"]
+script = ExtResource("2_iowdh")
+
+[node name="CubeSpawner" type="Node3D" parent="Player/XROrigin3D/left_hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0957428, 0)
+script = ExtResource("4_8q5ei")
+action_button_action = "ax_button"
+shoot_action_button = "by_button"

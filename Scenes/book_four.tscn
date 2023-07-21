@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://devyjsemmtsyq"]
+
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_1necf"]
+[ext_resource type="ArrayMesh" uid="uid://cjnlp3b8h0rjm" path="res://Assets/Books/Book4.res" id="2_hc4tw"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="3_spl7c"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4h5na"]
+rough = true
+absorbent = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yq1ca"]
+points = PackedVector3Array(-0.154935, -3.42913e-06, -0.085485, -0.154935, -3.42913e-06, 0.0854683, -0.15426, 0.00554934, -0.085485, -0.15426, -0.00555277, -0.085485, -0.15426, -0.00555277, 0.0854683, -0.15426, 0.00554934, 0.0854683, -0.152497, 0.0111021, -0.085485, -0.152497, -0.0111055, -0.085485, -0.152497, -0.0111055, 0.0854683, -0.152497, 0.0111021, 0.0854683, -0.151587, 0.0133143, -0.085485, -0.151587, -0.0133177, -0.085485, -0.151587, -0.0133177, 0.0854683, -0.151587, 0.0133143, 0.0854683, -0.145331, 0.0175192, -0.085485, -0.145331, -0.0175192, -0.085485, -0.145331, -0.0175192, 0.0854683, -0.145331, 0.0175192, 0.0854683, 0.145101, 0.0175192, -0.085485, 0.145101, -0.0175192, -0.085485, 0.145101, -0.0175192, 0.0854683, 0.145101, 0.0175192, 0.0854683)
+
+[node name="BookFour" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 5
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_4h5na")
+script = ExtResource("1_1necf")
+
+[node name="BookFourMesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_hc4tw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_yq1ca")
+
+[node name="GrabPointHandLeft" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0657928, 0, 0)
+visible = false
+script = ExtResource("3_spl7c")
+
+[node name="GrabPointHandRight" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0833433, 0.0421128, 0)
+visible = false
+script = ExtResource("3_spl7c")
+hand = 1

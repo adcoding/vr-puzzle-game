@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=2 format=3 uid="uid://chvgpmpmhxtxn"]
+
+[ext_resource type="Script" path="res://Assets/Levels/LevelResource.gd" id="1_73ahi"]
+
+[resource]
+script = ExtResource("1_73ahi")
+level_name = "Level name"
+available_books = Array[int]([0, 0, 0, 0, 0, 0])
+target_height = 1.154

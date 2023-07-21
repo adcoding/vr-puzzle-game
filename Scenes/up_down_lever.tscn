@@ -1,0 +1,101 @@
+[gd_scene load_steps=18 format=3 uid="uid://cl3wb7hjdvkjh"]
+
+[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_hinge.gd" id="1_w7y1n"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_handle.gd" id="2_pklgo"]
+[ext_resource type="PackedScene" uid="uid://dc5t2qgmhb2nf" path="res://addons/godot-xr-tools/objects/hand_pose_area.tscn" id="3_pk4ig"]
+[ext_resource type="Animation" uid="uid://dd67rufxwj2u" path="res://addons/godot-xr-tools/hands/animations/left/Grip 3.res" id="4_r6lvw"]
+[ext_resource type="Animation" uid="uid://bediglpx0rj7i" path="res://addons/godot-xr-tools/hands/animations/left/Grip 5.res" id="5_yi1ea"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="6_mj4xh"]
+[ext_resource type="Animation" uid="uid://rs7vpclot07o" path="res://addons/godot-xr-tools/hands/animations/right/Grip 3.res" id="7_pqsut"]
+[ext_resource type="Animation" uid="uid://s1vqcxyqcvea" path="res://addons/godot-xr-tools/hands/animations/right/Grip 5.res" id="8_sdn43"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e1wrm"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ysr3l"]
+height = 0.107714
+radius = 0.146347
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wa1tv"]
+height = 0.476304
+radius = 0.0545632
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uo31q"]
+radius = 0.106432
+
+[sub_resource type="SphereMesh" id="SphereMesh_urive"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_37b0e"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vdl7u"]
+radius = 0.107629
+
+[sub_resource type="Resource" id="Resource_agl7c"]
+script = ExtResource("6_mj4xh")
+open_pose = ExtResource("5_yi1ea")
+closed_pose = ExtResource("4_r6lvw")
+
+[sub_resource type="Resource" id="Resource_gcrl7"]
+script = ExtResource("6_mj4xh")
+open_pose = ExtResource("8_sdn43")
+closed_pose = ExtResource("7_pqsut")
+
+[node name="UpDownLever" type="Node3D"]
+
+[node name="Frame" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Frame"]
+mesh = SubResource("CylinderMesh_e1wrm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Frame"]
+shape = SubResource("CylinderShape3D_ysr3l")
+
+[node name="LeveOrigin" type="Node3D" parent="."]
+
+[node name="InteractableLever" type="Node3D" parent="LeveOrigin"]
+script = ExtResource("1_w7y1n")
+default_on_release = true
+
+[node name="HingeBody" type="StaticBody3D" parent="LeveOrigin/InteractableLever"]
+
+[node name="BarCollision" type="CollisionShape3D" parent="LeveOrigin/InteractableLever/HingeBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289056, 0)
+shape = SubResource("CylinderShape3D_wa1tv")
+
+[node name="HandleCollision" type="CollisionShape3D" parent="LeveOrigin/InteractableLever/HingeBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617518, 0)
+shape = SubResource("SphereShape3D_uo31q")
+
+[node name="Handle" type="MeshInstance3D" parent="LeveOrigin/InteractableLever/HingeBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617518, 0)
+mesh = SubResource("SphereMesh_urive")
+
+[node name="Bar" type="MeshInstance3D" parent="LeveOrigin/InteractableLever/HingeBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289056, 0)
+mesh = SubResource("CylinderMesh_37b0e")
+
+[node name="HandleOrigin" type="Node3D" parent="LeveOrigin/InteractableLever"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617128, 0)
+
+[node name="InteractableHandle" type="RigidBody3D" parent="LeveOrigin/InteractableLever/HandleOrigin"]
+collision_layer = 4
+collision_mask = 5
+freeze = true
+script = ExtResource("2_pklgo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeveOrigin/InteractableLever/HandleOrigin/InteractableHandle"]
+shape = SubResource("SphereShape3D_vdl7u")
+
+[node name="HandPoseArea" parent="LeveOrigin/InteractableLever/HandleOrigin/InteractableHandle" instance=ExtResource("3_pk4ig")]
+left_pose = SubResource("Resource_agl7c")
+right_pose = SubResource("Resource_gcrl7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeveOrigin/InteractableLever/HandleOrigin/InteractableHandle/HandPoseArea"]
+shape = SubResource("SphereShape3D_vdl7u")

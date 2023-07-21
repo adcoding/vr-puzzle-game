@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cuy8uos3dtg7p"
+path="res://.godot/imported/PineStump.obj-f641bcde22272d12e85cd226fcda000f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/PineStump.obj-f641bcde22272d12e85cd226fcda000f.mesh"]
+
+source_file="res://Assets/Models/Trees/OBJ/PineStump.obj"
+dest_files=["res://.godot/imported/PineStump.obj-f641bcde22272d12e85cd226fcda000f.mesh", "res://.godot/imported/PineStump.obj-f641bcde22272d12e85cd226fcda000f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

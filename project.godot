@@ -1,0 +1,48 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="VR Game Test"
+run/main_scene="res://Scenes/world.tscn"
+config/features=PackedStringArray("4.0", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
+SignalBus="*res://Scripts/SignalBus.gd"
+Data="*res://Scripts/Data.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
+
+[layer_names]
+
+3d_physics/layer_1="Floor"
+3d_physics/layer_3="Books"
+
+[physics]
+
+common/physics_ticks_per_second=180
+common/layer_1="Floor"
+common/layer_3="Books"
+
+[rendering]
+
+renderer/rendering_method="mobile"
+anti_aliasing/quality/screen_space_aa=1
+anti_aliasing/quality/use_debanding=true
+
+[xr]
+
+openxr/enabled=true
+shaders/enabled=true
